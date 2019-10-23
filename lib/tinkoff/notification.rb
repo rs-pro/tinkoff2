@@ -1,7 +1,7 @@
 module Tinkoff
   class Notification
     def initialize(params)
-      @data = params.slice('TerminalKey',
+      @data = params.permit('TerminalKey',
                            'OrderId',
                            'Success',
                            'Status',
@@ -13,7 +13,7 @@ module Tinkoff
                            'Pan',
                            'Token',
                            'ExpDate',
-                           'DATA')
+                           'DATA').to_h
       @token_ok = authentic?
     end
 
